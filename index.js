@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 
 // DB Setup
@@ -14,6 +15,8 @@ mongoose.connect('mongodb://localhost:auth/auth');
 // app setup
 app.use(morgan('combined'));
 app.use(bodyParser({ type: '*/*' }));
+app.use(passport.initialize());
+app.use(passport.session());
 router(app);
 
 
